@@ -1,0 +1,69 @@
+---------------------------------------------------------COMANDOS------------------------------------------------------
+pwd               --> Mirar directorio actual
+
+whoami            --> Usuario
+
+ls                --> listar directorio
+	                parametros     --> -l     --> ver mas informacion/permisos
+			
+ll		            --> Muestra los permisos de cada archivo/directorio
+
+mkdir             -->Crear carpetas
+
+env               --> Lista las variables que estan creadar en el entorno actual
+
+export $variable  --> envia la variable a env
+
+echo              --> Imprime por pantalla la salida que le des
+
+&                 --> Abre la salida creando un proceso y dejando la consola libre
+
+cat 	            --> Mostrar contenido por pantalla de un arhivo
+
+tac 	            --> Misma funcion que "cat" pero en orden invertido su contenido
+
+|more             --> Pagina para mostrar el resultado en pantalla
+
+clear 	          --> Borra el contenido de la pantalla
+
+exit 	            --> Sale del programa que este en ejecucion (Admite hasta 255; exit 1)
+
+----------------------------------------------------VARIABLES---------------------------------------------------------
+
+PATH      --> Contiene las rutas donde contiene los programas (util para script)
+
+$0	      --> Muestra el nombre de la consola que estas utilizando
+
+$1	      --> Variable reservada, se le puede añadir contenido al ejecutar el programa (Reservada hasta el numero 10)
+
+$? 	      --> Almacena el codigo de salida del exit
+
+-----------------------------------------------------EXPRESIONES REGULARES-----------------------------------------------
+
+* 	--> Cualquier caracter que indiques despues de otro 0 o mas veces	(Ejemplo -->)
+
+
+--------------------------------------------------------SCRIPTS------------------------------------------------------
+
+#!/bin/bash 	  --> Introducir al iniciar un progama
+
+#				        --> Comentar la linea
+
+read 			      --> Se queda en espera hasta la introducion de datos por el usuario
+					      Parametros --> -p --> escucha en la misma linea
+
+source 			    --> Incorpora lo que tenga el otro fichero 				
+					
+--------------------------------------------------------EJEMPLOS---------------------------------------------------------
+
+1.0.- Ejemplo de condicional if
+	read -p "Introduce tu nombre: " nombre
+	if [[ $nombre == "Miguel" ]];
+		then
+		echo "Soy yo"
+		elif [[ $nombre == "Samer" ]];
+		then
+			echo "Es mi compañero"
+	else
+		echo "No se sabe quien es"
+	fi
