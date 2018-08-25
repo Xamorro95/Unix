@@ -67,3 +67,16 @@ source 			    --> Incorpora lo que tenga el otro fichero
 	else
 		echo "No se sabe quien es"
 	fi
+
+1.1.- Comprueba si un proceso que reciba por parametros esta en ejecucion o no --> filtrar.sh
+#!/bin/bash
+function comprobarProceso(){
+	valor=$(ps -Al | grep -c $1)
+	if [[ $valor > 0 ]];
+	then
+		echo "El proceso esta en ejecucion"
+	else
+		echo "El proceso no esta en ejecucion"
+	fi
+}
+
