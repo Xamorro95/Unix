@@ -51,34 +51,25 @@ function CrearProyecto(){
 		[[ $? == 1 ]] && return 1
 	fi
 	
-	
-
 	#Una vez validado los datos creamos la ruta de carpetas correspondientes con el nombre del proyecto introducido
 	echo_bold "Creando proyecto $nombre_proyecto ..."
-	mkdir $nombre_proyecto
-	mkdir $nombre_proyecto/src
-	mkdir $nombre_proyecto/bin
-	mkdir $nombre_proyecto/data
-	mkdir $nombre_proyecto/log
+	mkdir ./$nombre_proyecto
+	mkdir ./$nombre_proyecto/src
+	mkdir ./$nombre_proyecto/bin
+	mkdir ./$nombre_proyecto/data
+	mkdir ./$nombre_proyecto/log
 
 	#Comprobamos si existe el usuario, si no lo crea.
 	CrearUsuario backupP c0p1a_d3_segur1dad backupP
 
 	#Creamos la carpeta backup en la nadie puede ejecutar, "backup", tiene la propiedad, puede leer y escribir, el usuario no puede hacwer nada y el grupo 
 	#puede leer
-	mkdir $nombre_proyecto/backup
-	chmod 604 $nombre_proyecto/backup
-	sudo chown backupP  $nombre_proyecto/backup
+	mkdir ./$nombre_proyecto/backup
+	chmod 604 ./$nombre_proyecto/backup
+	sudo chown backupP  ./$nombre_proyecto/backup
 	
-
-	echo_bold "Proyecto creado $nombre_proyecto"
-	
-	
-	
+	echo_bold "Proyecto creado $nombre_proyecto"		
 }
-
-
-
 
 #
 # Ejemplos de uso
