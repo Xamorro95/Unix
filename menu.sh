@@ -15,9 +15,14 @@ EJECUTAR_EJEMPLOS_CREACION_PROYECTO=false
 source formato.sh
 source utilidades.sh
 source crearproyecto.sh
+source copiaseguridad.sh
 
+
+#
 #Compruebo si estoy  dentro de un proyecto comprobando si existe el fichero proyecto.propierties
-
+#Si estoy dentro de un proyecto deshabilito opcion de crear proyecto
+#Si no estoy dentro de un proyecto, solo muestro la opcion de crear proyecto
+#
 while [[ true ]];
 do
 	clear
@@ -41,6 +46,14 @@ do
 		0)
 			break
 			;; 
+		3)	
+			if [[ -e proyecto.properties ]]; then
+				CopiaSeguridad	
+			else
+				echo_error "Por favor, pulsa una opcion valida!"
+				read -p "Pulsa cualquier tecla para continuar..." -N 1 
+			fi
+			;;
 		6) 
 			if [[ -e proyecto.properties ]]; then			
 				echo_error "Por favor, pulsa una opcion valida!"
