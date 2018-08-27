@@ -83,8 +83,13 @@ function CrearProyecto(){
 		[[ $usa_base_datos == "s" ]] && echo BASE_DATOS=$nombre_base_datos
 	} > ./$nombre_proyecto/proyecto.properties
 	
-	echo_pausa
-		
+	#Preguntamos si quiere acceder directamente a la carpeta del proyecto, si es asi, accedemos a ella y cargamos de nuevo el menu
+	PreguntarValor ir "Quieres ir al directorio del proyecto (s/n)" "^[sn]$" 3 "s"
+	AsegurarValor "No se ha recibido una respuesta valida. No se puede continuar creando el proyecto" $ir
+	[[ $? == 1 ]] && return 1
+	if [[ $ir == "s" ]]; then
+		cd ./$nombre_proyecto
+	fi	
 }
 
 
