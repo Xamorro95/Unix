@@ -28,7 +28,7 @@ function CopiaSeguridad(){
 	sudo chown -R backupP ./temp/backups/src/$fecha
 	
 	#Copiamos el tar.gz a backup
-	sudo cp -R ./temp/backups/src/$fecha ./backup/src
+	sudo mv ./temp/backups/src/$fecha ./backup/src
 	
 	#Borramos la carpeta temporal creada
 	sudo rm -R ./temp
