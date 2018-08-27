@@ -1,3 +1,6 @@
+etc/profile --> Meter PATH=$PATH:/home/usuario/script
+
+
 ---------------------------------------------------------COMANDOS------------------------------------------------------
 pwd               --> Mirar directorio actual
 
