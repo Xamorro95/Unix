@@ -4,7 +4,9 @@
 # Autor: Miguel Chamorro
 #
 
-#Evita que se comprueben los ejemplos de utilidades
+# 
+# Constantes utilizadas en las funciones
+#
 EJECUTAR_EJEMPLOS_UTILIDADES=false
 EJECUTAR_EJEMPLOS_USUARIOS=false
 
@@ -12,23 +14,25 @@ EJECUTAR_EJEMPLOS_USUARIOS=false
 source utilidades.sh
 source utilidadesUsuarios.sh
 
-# 
-# Constantes utilizadas en las funciones
-#
+# Ejecutar los ejemplos. Si este fichero se ha importado en otro donde se ha definido esta variable, el valor del otro prevalece.
 if [[ -z $EJECUTAR_EJEMPLOS_CREACION_PROYECTO ]]; then
-	EJECUTAR_EJEMPLOS_CREACION_PROYECTO=true	# Ejecutar los ejemplos. Si este fichero se ha importado en otro
-							# donde se ha definido esta variable, el valor del otro prevalece.
+	EJECUTAR_EJEMPLOS_CREACION_PROYECTO=true	
 fi
 
+#
+#
+#
 function CrearProyecto(){
 	#Mantiene bucle hasta que se recibe un nombre de proyecto valido o se agotan los intentos maximos
 	while [[ true ]];
 	do
 		#Preguntar el nombre del proyecto y validarlo mediante expresion regular
 		PreguntarValor nombre_proyecto "Como se llama el proyecto" "^[a-z]+[0-9]*$"
+		
 		#Comprueba que se ha recibido un nombre de base de datos correcto, si no detiene la ejecucion	
 		AsegurarValor "Nombre de proyecto no valido. No se puede continuar creando el proyecto" $nombre_proyecto
 		[[ $? == 1 ]] && return 1
+		
 		#Si existe un directorio con ese nombre, muestra error y pide un nuevo nombre"
 		if [[ -d $nombre_proyecto ]];
 		then
@@ -38,7 +42,6 @@ function CrearProyecto(){
 		fi
 	done
 	
-
 	#Preguntar si se usa base de datos limitado a tres intentos
 	PreguntarValor usa_base_datos "Usa usted una base de datos (s/n)" "^[sn]$" 3 "s"
 	AsegurarValor "No se ha recibido una respuesta valida. No se puede continuar creando el proyecto" $usa_base_datos
@@ -51,6 +54,8 @@ function CrearProyecto(){
 		[[ $? == 1 ]] && return 1
 	fi
 	
+	
+
 	#Una vez validado los datos creamos la ruta de carpetas correspondientes con el nombre del proyecto introducido
 	echo_bold "Creando proyecto $nombre_proyecto ..."
 	mkdir ./$nombre_proyecto
@@ -65,8 +70,12 @@ function CrearProyecto(){
 	#Creamos la carpeta backup en la nadie puede ejecutar, "backup", tiene la propiedad, puede leer y escribir, el usuario no puede hacwer nada y el grupo 
 	#puede leer
 	mkdir ./$nombre_proyecto/backup
-	chmod 604 ./$nombre_proyecto/backup
-	sudo chown backupP  ./$nombre_proyecto/backup
+	mkdir ./$nombre_proyecto/bin
+	mkdir ./$nombre_proyecto/src
+	sudo chmod -R 604 ./$nombre_proyecto/backup
+	sudo chown -R backupP  ./$nombre_proyecto/backup
+	
+	echo_bold "Estructura de carpetas creadas"
 	
 	#Creamos fichero de configuracion proyecto.properties con los datos del proyecto
 	{
@@ -74,8 +83,10 @@ function CrearProyecto(){
 		[[ $usa_base_datos == "s" ]] && echo BASE_DATOS=$nombre_base_datos
 	} > ./$nombre_proyecto/proyecto.properties
 	
-	echo_bold "Proyecto creado $nombre_proyecto"		
+	echo_pausa
+		
 }
+
 
 #
 # Ejemplos de uso
