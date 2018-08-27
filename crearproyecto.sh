@@ -68,6 +68,12 @@ function CrearProyecto(){
 	chmod 604 ./$nombre_proyecto/backup
 	sudo chown backupP  ./$nombre_proyecto/backup
 	
+	#Creamos fichero de configuracion proyecto.properties con los datos del proyecto
+	{
+		echo PROYECTO=$nombre_proyecto
+		[[ $usa_base_datos == "s" ]] && echo BASE_DATOS=$nombre_base_datos
+	} > ./$nombre_proyecto/proyecto.properties
+	
 	echo_bold "Proyecto creado $nombre_proyecto"		
 }
 
