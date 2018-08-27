@@ -42,6 +42,10 @@ $? 	      --> Almacena el codigo de salida del exit
 
 * 	--> Cualquier caracter que indiques despues de otro 0 o mas veces	(Ejemplo -->)
 
++	--> Al menos un caracter
+
+^[a-z]+[0-9]*$ 	--> Tiene que empezar por una letra en minusculas y luego puede terminar con numeros
+
 
 --------------------------------------------------------SCRIPTS------------------------------------------------------
 
