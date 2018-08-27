@@ -16,6 +16,8 @@ source formato.sh
 source utilidades.sh
 source crearproyecto.sh
 source copiaseguridad.sh
+source compilar.sh
+source probar.sh
 
 
 #
@@ -46,13 +48,17 @@ do
 		0)
 			break
 			;; 
+		1)
+			Compilar
+			;; 
+		2)
+			Probar
+			;; 
 		3)	
-			if [[ -e proyecto.properties ]]; then
-				CopiaSeguridad	
-			else
-				echo_error "Por favor, pulsa una opcion valida!"
-				read -p "Pulsa cualquier tecla para continuar..." -N 1 
-			fi
+			doBackup src
+			;;
+		4)	
+			doBackup bin
 			;;
 		6) 
 			if [[ -e proyecto.properties ]]; then			
@@ -71,3 +77,12 @@ do
 done
 
 clear
+
+function doBackup(){
+	if [[ -e proyecto.properties ]]; then
+		CopiaSeguridad	$1
+	else
+		echo_error "Por favor, pulsa una opcion valida!"
+		read -p "Pulsa cualquier tecla para continuar..." -N 1 
+	fi
+}
