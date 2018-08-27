@@ -13,7 +13,7 @@
 source utilidades.sh
 source utilidadesUsuarios.sh
 
-function probar(){
+function Probar(){
 	echo "probando...."
 	echo_pausa
 }
