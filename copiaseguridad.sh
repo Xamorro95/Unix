@@ -9,6 +9,7 @@
 #
 source proyecto.properties
 
+
 function CopiaSeguridad(){
 	#Almaceno en una variable la fecha, hora y minutos del momento de realizar la copia de seguridad
 	fecha=$(date "+%Y%m%d_%H%M")
@@ -22,6 +23,16 @@ function CopiaSeguridad(){
 	#Comprimimos la copia de seguridad
 	tar -cvf ./temp/backups/src/$fecha/$PROYECTO.tar.gz ./src
 	
+	#Cambiamos permisos y propietario al tar.gz creado
+	sudo chmod -R 604 ./temp/backups/src/$fecha
+	sudo chown -R backupP ./temp/backups/src/$fecha
+	
+	#Copiamos el tar.gz a backup
+	sudo cp -R ./temp/backups/src/$fecha ./backup/src
+	
+	#Borramos la carpeta temporal creada
+	sudo rm -R ./temp
+
 	echo "Creada copia de seguridad src"
 	echo_pausa
 }
