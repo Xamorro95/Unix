@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # Funciones para capturar la entrada por consola de valores suministrados por un usuario 
-# Autor: Iv├ín Osuna
+# Autor: Miguel Chamorro
 #
 
 # Utilidades para formatear gr├íficamente los mensajes que aparecen por consola
